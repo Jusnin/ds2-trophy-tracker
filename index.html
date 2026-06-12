@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARK SOULS II — 白金獎盃 Trophy Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Praise the Sun · 獎盃征服</div>
+    <h1>DARK SOULS II</h1>
+    <div class="cn-title">黑暗靈魂 II</div>
+    <div class="sub">白金獎盃完全攻略 · PLATINUM TROPHY TRACKER</div>
+  </header>
+
+  <!-- progress dashboard -->
+  <section class="dash">
+    <div class="ring">
+      <svg width="132" height="132" viewBox="0 0 132 132">
+        <defs>
+          <linearGradient id="emberGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#f3c061"/>
+            <stop offset="100%" stop-color="#b9742a"/>
+          </linearGradient>
+        </defs>
+        <circle class="track" cx="66" cy="66" r="58"/>
+        <circle class="fill"  cx="66" cy="66" r="58" id="ringFill"/>
+      </svg>
+      <div class="pct"><b id="ringPct">0%</b><span>白金進度</span></div>
+    </div>
+    <div class="dash-meta">
+      <div class="count-line">已點燃 <b id="countDone">0</b> / <span id="countTotal">38</span> 座獎盃營火</div>
+      <div class="legend" id="legend"></div>
+      <div class="dash-actions">
+        <button class="btn ghost-danger" id="resetBtn">熄滅全部進度 Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- controls -->
+  <div class="controls">
+    <div class="filters" id="filters">
+      <button class="btn active" data-filter="all">全部</button>
+      <button class="btn" data-filter="platinum">白金</button>
+      <button class="btn" data-filter="gold">黃金</button>
+      <button class="btn" data-filter="silver">白銀</button>
+      <button class="btn" data-filter="bronze">青銅</button>
+      <button class="btn" data-filter="todo">未完成</button>
+      <button class="btn" data-filter="done">已完成</button>
+    </div>
+    <div class="spacer"></div>
+    <input class="search" id="search" type="text" placeholder="搜尋獎盃 / 法術…">
+  </div>
+
+  <!-- trophy list -->
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    進度自動儲存於本機瀏覽器（localStorage）。<br>
+    將自己的獎盃圖示放入 <b>icons/</b> 資料夾，命名為 <b>trophy-01.png … trophy-38.png</b> 即會自動顯示。<br>
+    攻略資料來源：<a href="https://home.gamer.com.tw/artwork.php?sn=2539886" target="_blank" rel="noopener">巴哈姆特 · kennylight《黑暗靈魂2 白金獎盃攻略》</a>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
