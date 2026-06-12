@@ -187,8 +187,6 @@ function checklistBlock(t) {
 }
 
 /* ---------- next-step reminder ---------- */
-const NEXT_CAP = 5; // max remaining checklist items to spell out inline
-
 function nextStepBlock(t) {
   const wrap = document.createElement("div");
   wrap.className = "next-step";
@@ -203,32 +201,10 @@ function fillNextStep(t, box) {
   const prog = checklistProgress(t);
 
   if (prog) {
-    const remaining = t.checklist
-      .map((c, i) => ({ c, i }))
-      .filter(({ i }) => !state.items[`${t.id}-${i}`]);
-
-    if (!remaining.length) {
-      box.innerHTML = `<p class="ns-ready">收集清單已全部完成 ✓ — 點燃右側營火即可入手獎盃！</p>`;
-      return;
-    }
-    const shown = remaining.slice(0, NEXT_CAP)
-      .map(({ c }) => `<li><b>${c.t}</b><span>${c.d}</span></li>`).join("");
-    const more = remaining.length > NEXT_CAP
-      ? `<li class="ns-more">…還有 ${remaining.length - NEXT_CAP} 項，點此展開下方收集清單</li>`
-      : "";
-    box.innerHTML = `<p class="ns-lead">還差 <b>${remaining.length}</b> 項才能解鎖：</p>
-      <ul class="ns-list">${shown}${more}</ul>`;
-
-    // make the "…還有 N 項" line open & reveal the collapsed checklist
-    const moreEl = box.querySelector(".ns-more");
-    if (moreEl) {
-      moreEl.addEventListener("click", () => {
-        const collect = box.closest(".body")?.querySelector(".collect");
-        if (!collect) return;
-        collect.classList.add("open");
-        collect.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      });
-    }
+    const left = prog.total - prog.done;
+    box.innerHTML = left
+      ? `<p class="ns-lead">收集清單還有 <b>${left}</b> / ${prog.total} 項尚未完成，展開下方清單繼續收集。</p>`
+      : `<p class="ns-ready">收集清單已全部完成 ✓ — 點燃右側營火即可入手獎盃！</p>`;
     return;
   }
 
