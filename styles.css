@@ -361,12 +361,14 @@ footer a { color: var(--ink-dim); }
   .card { grid-template-columns: 64px 1fr; gap: 14px; padding: 16px; }
   .icon-wrap { width: 64px; height: 64px; }
   .card .name { font-size: 19px; }
-  .card .toggle { grid-column: 1 / -1; justify-content: stretch; }
+  /* bonfire action becomes a full-width footer bar under the text */
+  .card .toggle { grid-column: 1 / -1; }
   .toggle-col {
-    flex-direction: row; gap: 12px; width: 100%; justify-content: center;
-    border-top: 1px dashed var(--line); padding-top: 14px;
+    flex-direction: row; align-items: center; justify-content: center; gap: 14px;
+    width: 100%; margin-top: 4px;
+    border-top: 1px dashed var(--line); padding-top: 16px;
   }
-  .toggle-label { margin-top: 0; }
+  .toggle-label { margin-top: 0; font-size: 12px; letter-spacing: .12em; }
 
   /* roomier tap targets in checklists */
   .check { padding: 9px 8px; }
